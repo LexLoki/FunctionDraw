@@ -7,7 +7,7 @@ int[] pointsx= new int[80];
 int[] pointsy = new int[80];
 //int[] lock = new int[10];
 int pointsAux=0;
-boolean doPoint=false, doDrawP=false, doDrawL=false, doText=false;
+boolean doPoint=false, doDrawP=false, doDrawL=false, doText=false, doDrawC=false;
 
 void setup(){
   fill(0, 102, 200);
@@ -28,6 +28,9 @@ void draw(){
    else if(doDrawL&&pointsAux>=2)
      for(j=0;pointsAux-j>=2;j+=2)
        drawLine((float)pointsx[j], (float)pointsx[j+1], (float)pointsy[j], (float)pointsy[j+1]);
+   else if(doDrawC&&pointsAux>=2)
+     for(j=0;pointsAux-j>=2;j++)
+       drawConnectPoints((float)pointsx[j], (float)pointsx[j+1], (float)pointsy[j], (float)pointsy[j+1]);
  }
  
  cursorHand();
@@ -126,13 +129,24 @@ void keyPressed(){
     case 100: rx++; break;
     case 113:
       doDrawL = !doDrawL;
-      if(doDrawL)
+      if(doDrawL){
         doDrawP = false;
+        doDrawC = false;
+      }
       break;
     case 101:
       doDrawP = !doDrawP;
-      if(doDrawP)
+      if(doDrawP){
         doDrawL = false;
+        doDrawC = false;
+      }
+      break;
+    case 99:
+      doDrawC = !doDrawC;
+      if(doDrawC){
+        doDrawL = false;
+        doDrawP = false; 
+      }
       break;
     case 32:
       pointsAux=0;

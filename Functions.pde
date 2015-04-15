@@ -56,6 +56,10 @@ void drawGraph(){
     text("Parabola ON", 698, 15);
   else
     text("Parabola OFF", 698, 15);
+  if(doDrawC)
+    text("Connecting ON", 690, 49);
+  else
+    text("Connecting OFF", 690, 49);
   }  //!doText
   else{
     background(211, 211, 211);
@@ -98,6 +102,12 @@ void drawPoint(int x, int y){
   point(width/2, y);
   stroke(0, 0, 200); //blue dot
   point(x, y); 
+}
+
+void drawConnectPoints(float x1, float x2, float y1, float y2){
+  stroke(255,140,0);
+  strokeWeight(2);
+  line(width/2+x1*rx, height/2-y1*ry, width/2+x2*rx, height/2-y2*ry);
 }
 
 void drawPar(float x1, float x2, float x3, float y1, float y2, float y3){
